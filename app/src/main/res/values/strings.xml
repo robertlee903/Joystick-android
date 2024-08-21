@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Joystick</string>
+    <string name="no_devices_found">No BLE devices found</string>
+</resources>
