@@ -13,15 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import gg.jam.jampadcompose.JamPad
-import gg.jam.jampadcompose.config.HapticFeedbackType
-import gg.jam.jampadcompose.controls.ControlAnalog
-import gg.jam.jampadcompose.controls.ControlCross
-import gg.jam.jampadcompose.controls.ControlFaceButtons
+import com.example.joystick.ui.joystick.JamPad
+import com.example.joystick.ui.joystick.config.HapticFeedbackType
+import com.example.joystick.ui.joystick.controls.ControlAnalog
+import com.example.joystick.ui.joystick.controls.ControlCross
+import com.example.joystick.ui.joystick.controls.ControlFaceButtons
 
 
 @Composable
-fun JoyStick() {
+fun JoyStickLocal() {
     JamPad(
         hapticFeedbackType = HapticFeedbackType.PRESS,
         modifier = Modifier.fillMaxSize(),

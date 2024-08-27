@@ -13,6 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.joystick.bluetooth.BluetoothViewModel
 import com.example.joystick.navigation.AppNavHost
+import com.example.joystick.ui.JoyStickLocal
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         val bluetoothManager: BluetoothManager = getSystemService(BluetoothManager::class.java)
         val bluetoothAdapter: BluetoothAdapter? = bluetoothManager.getAdapter()
-
-//        Global.bluetoothAdapter = bluetoothAdapter
 
         if (bluetoothAdapter == null) {
             // Device doesn't support Bluetooth
@@ -37,8 +36,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContent {
-            var navController: NavHostController = rememberNavController()
-            AppNavHost(navController, viewModel)
+//            var navController: NavHostController = rememberNavController()
+//            AppNavHost(navController, viewModel)
+            JoyStickLocal()
         }
     }
 }
