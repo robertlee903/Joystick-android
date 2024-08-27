@@ -83,7 +83,4 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
-
-
-//    implementation("io.github.piepacker:jampadcompose:0.0.1-alpha1")
 }
