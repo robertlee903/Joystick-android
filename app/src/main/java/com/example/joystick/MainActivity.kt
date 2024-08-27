@@ -6,19 +6,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavHostController
 
 import androidx.navigation.compose.rememberNavController
+import com.example.joystick.bluetooth.BluetoothViewModel
 import com.example.joystick.navigation.AppNavHost
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val viewModel: BluetoothViewModel by viewModels()
+
         val bluetoothManager: BluetoothManager = getSystemService(BluetoothManager::class.java)
         val bluetoothAdapter: BluetoothAdapter? = bluetoothManager.getAdapter()
 
-        Global.bluetoothAdapter = bluetoothAdapter
+//        Global.bluetoothAdapter = bluetoothAdapter
 
         if (bluetoothAdapter == null) {
             // Device doesn't support Bluetooth
@@ -32,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContent {
-            AppNavHost(navController = rememberNavController())
+            var navController: NavHostController = rememberNavController()
+            AppNavHost(navController, viewModel)
         }
     }
 }

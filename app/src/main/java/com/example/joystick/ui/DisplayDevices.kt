@@ -1,4 +1,4 @@
-package com.example.joystick.bluetooth
+package com.example.joystick.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn

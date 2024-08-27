@@ -9,11 +9,13 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.navigation.NavHostController
+import com.example.joystick.bluetooth.BluetoothViewModel
 import com.example.joystick.navigation.Screen
 
 @Composable
 fun Home(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: BluetoothViewModel,
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -21,6 +23,7 @@ fun Home(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {
+            viewModel.discoverDevices()
             navController.navigate(Screen.ConnectWithYourRobot.route)
         }) {
             Text(text = "Connect with your robot")
