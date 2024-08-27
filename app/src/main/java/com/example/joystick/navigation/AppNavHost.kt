@@ -7,23 +7,27 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.joystick.pages.Home
 import com.example.joystick.pages.ConnectWithYourRobot
+import com.example.joystick.pages.Joystick
 
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    startDestination: String = NavigationItem.Home.route,
+    startDestination: String = Screen.Home.route,
 ) {
     NavHost(
         modifier = modifier,
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(NavigationItem.Home.route) {
+        composable(Screen.Home.route) {
             Home(navController)
         }
-        composable(NavigationItem.ConnectWithYourRobot.route) {
+        composable(Screen.ConnectWithYourRobot.route) {
             ConnectWithYourRobot(navController)
+        }
+        composable(Screen.Joystick.route) { backStackEntry ->
+            Joystick(navController, backStackEntry.arguments?.getString("bluetoothAddress"))
         }
     }
 }

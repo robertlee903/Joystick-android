@@ -9,7 +9,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.navigation.NavHostController
-import com.example.joystick.navigation.NavigationItem
+import com.example.joystick.navigation.Screen
 
 @Composable
 fun Home(
@@ -21,7 +21,7 @@ fun Home(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {
-            navController.navigate(NavigationItem.ConnectWithYourRobot.route)
+            navController.navigate(Screen.ConnectWithYourRobot.route)
         }) {
             Text(text = "Connect with your robot")
         }

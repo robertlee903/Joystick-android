@@ -1,7 +1,6 @@
 package com.example.joystick.pages
 
 import android.bluetooth.BluetoothDevice
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -31,7 +30,7 @@ fun ConnectWithYourRobot(
                 .padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            DiscoverBluetoothDevices()
+            DiscoverBluetoothDevices(navController)
         }
     }
 }
