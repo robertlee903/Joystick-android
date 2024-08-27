@@ -21,7 +21,7 @@ import com.example.joystick.ui.joystick.controls.ControlFaceButtons
 
 
 @Composable
-fun JoyStickLocal() {
+fun JoyStickPad() {
     JamPad(
         hapticFeedbackType = HapticFeedbackType.PRESS,
         modifier = Modifier.fillMaxSize(),

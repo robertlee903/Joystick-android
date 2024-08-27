@@ -20,9 +20,7 @@ import androidx.navigation.NavHostController
 import com.example.joystick.navigation.Screen
 import com.example.joystick.ui.NavTopBar
 import com.example.joystick.bluetooth.BluetoothViewModel
-import com.example.joystick.ui.joystick.JamPad
-import com.example.joystick.ui.joystick.controls.ControlCross
-import com.example.joystick.ui.joystick.controls.ControlFaceButtons
+import com.example.joystick.ui.JoyStickPad
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -70,26 +68,7 @@ fun Joystick(
         ) {
             Text("Connected to device: ${device?.address}")
 
-            MyGamePad()
-        }
-    }
-}
-
-@Composable
-private fun MyGamePad() {
-    JamPad(
-        modifier = Modifier.fillMaxSize().aspectRatio(2f),
-        onInputStateUpdated = { }
-    ) {
-        Row(modifier = Modifier.fillMaxSize()) {
-            ControlCross(
-                modifier = Modifier.weight(1f),
-                id = 0
-            )
-            ControlFaceButtons(
-                modifier = Modifier.weight(1f),
-                ids = listOf(1, 2, 3)
-            )
+            JoyStickPad()
         }
     }
 }
