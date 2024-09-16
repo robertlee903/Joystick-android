@@ -1,55 +1,61 @@
 package com.example.joystick.pages
 
-import android.view.MotionEvent
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.joystick.navigation.Screen
 import com.example.joystick.ui.NavTopBar
 import com.example.joystick.bluetooth.BluetoothViewModel
 import com.example.joystick.ui.JoyStickPad
+import com.example.joystick.ui.NavKey
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Joystick(
     navController: NavHostController,
     viewModel: BluetoothViewModel,
 ) {
-    val device = viewModel.connectedDevice.value
-
-    // Closes the client socket and causes the thread to finish.
     fun disconnectDevice() {
         viewModel.disconnectDevice()
         navController.navigate(Screen.Home.route)
     }
 
-    fun moveForward() {
+    fun moveUp() {
         viewModel.write("f".toByteArray())
     }
-    fun moveBackward() {
+    fun moveDown() {
         viewModel.write("b".toByteArray())
     }
-    fun turnLeft() {
+    fun moveLeft() {
         viewModel.write("l".toByteArray())
     }
-    fun turnRight() {
+    fun moveRight() {
         viewModel.write("r".toByteArray())
+    }
+    fun moveUpRight() {
+
     }
     fun stop() {
         viewModel.write("s".toByteArray())
+    }
+
+    fun moveRobot(direction: NavKey) {
+        when {
+            direction == NavKey.ARROW_UP -> moveUp()
+            direction == NavKey.ARROW_DOWN -> moveDown()
+            direction == NavKey.ARROW_LEFT -> moveLeft()
+            direction == NavKey.ARROW_RIGHT -> moveRight()
+            direction == NavKey.ARROW_UPPER_RIGHT -> moveUpRight()
+            direction == NavKey.ARROW_UPPER_LEFT -> moveUpRight()
+            direction == NavKey.ARROW_LOWER_RIGHT -> moveUpRight()
+            direction == NavKey.ARROW_LOWER_LEFT -> moveUpRight()
+            else -> stop()
+        }
     }
 
     Scaffold(
@@ -66,9 +72,7 @@ fun Joystick(
                 .padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text("Connected to device: ${device?.address}")
-
-            JoyStickPad()
+            JoyStickPad(moveRobot = {direction -> moveRobot(direction)})
         }
     }
 }
